@@ -4,8 +4,17 @@ import 'package:flutter/material.dart';
 
 // Singlechild: child
 // multichlid:  children:[]
-class ArithemticView extends StatelessWidget {
+class ArithemticView extends StatefulWidget {
   const ArithemticView({super.key});
+
+  @override
+  State<ArithemticView> createState() => _ArithemticViewState();
+}
+
+class _ArithemticViewState extends State<ArithemticView> {
+  int first = 0;
+  int second = 0;
+  int result = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +26,9 @@ class ArithemticView extends StatelessWidget {
         child: Column(
           children: [
             TextField(
+              onChanged: (value) {
+                first = int.parse(value);
+              },
               decoration: InputDecoration(
                 labelText: "Enter first no",
                 border: OutlineInputBorder(),
@@ -24,6 +36,9 @@ class ArithemticView extends StatelessWidget {
             ),
             SizedBox(height: 8),
             TextField(
+              onChanged: (value) {
+                second = int.parse(value);
+              },
               decoration: InputDecoration(
                 labelText: "Enter second no",
                 border: OutlineInputBorder(),
@@ -32,11 +47,17 @@ class ArithemticView extends StatelessWidget {
             SizedBox(height: 8),
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(onPressed: () {}, child: Text("Add")),
+              child: ElevatedButton(
+                onPressed: () {
+                  //Simple state management OR Page lai refresh gara
+                  setState(() {
+                    result = first + second;
+                  });
+                }, child: Text("Add")),
             ),
             SizedBox(height: 8),
 
-            Text("Result : 0"),
+            Text("Result : $result", style: TextStyle(fontSize: 30)),
           ],
         ),
       ),
