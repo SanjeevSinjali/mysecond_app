@@ -53,7 +53,9 @@ class _ArithemticViewState extends State<ArithemticView> {
                   setState(() {
                     result = first + second;
                   });
-                }, child: Text("Add")),
+                },
+                child: Text("Add"),
+              ),
             ),
             SizedBox(height: 8),
 
